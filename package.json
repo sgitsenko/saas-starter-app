@@ -9,10 +9,9 @@
     "generate-types": "npx supabase gen types typescript --project-id YOUR_PROJECT_ID --schema public > types_db.ts"
   },
   "dependencies": {
-    "@mantine/core": "^6.0.20",
-    "@mantine/ds": "^6.0.20",
-    "@mantine/hooks": "^6.0.20",
-    "@mantine/prism": "^6.0.20",
+    "@mantine/core": "^7.0.0-beta.3",
+    "@mantine/ds": "^7.0.0-beta.3",
+    "@mantine/hooks": "^7.0.0-beta.3",
     "@supabase/auth-helpers-nextjs": "^0.7.0",
     "@supabase/auth-ui-react": "^0.4.2",
     "@supabase/auth-ui-shared": "^0.1.6",
@@ -21,13 +20,16 @@
     "next": "13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-merge-refs": "^2.0.2",
     "react-toastify": "^9.1.3"
   },
   "devDependencies": {
     "@types/node": "^20.2.3",
     "@types/react": "^18.2.7",
     "encoding": "^0.1.13",
+    "postcss": "^8.4.29",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
     "supabase": "^1.63.1",
     "typescript": "^5.1.3"
   }

@@ -1,10 +1,9 @@
-import SupabaseProvider from './supabase-provider'
-import { Providers } from './externals/provider'
+import '@mantine/core/styles.css'
 import { PropsWithChildren } from 'react'
-import 'styles/main.css'
+import { MantineProvider, ColorSchemeScript } from '@mantine/core'
+import SupabaseProvider from './supabase-provider'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import LandHeader from '@/components/headers/LandHeader'
 
 const meta = {
 	title: 'SGDev | SaaS Starter App',
@@ -48,14 +47,16 @@ export default function RootLayout({
 }: PropsWithChildren) {
 	return (
 		<html lang='en'>
+			<head>
+				<ColorSchemeScript />
+			</head>
 			<body>
-				<Providers>
+				<MantineProvider>
 					<SupabaseProvider>
-						<LandHeader />
 						<ToastContainer theme='colored' position='top-center' />
 						{children}
 					</SupabaseProvider>
-				</Providers>
+				</MantineProvider>
 			</body>
 		</html>
 	)

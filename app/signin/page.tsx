@@ -1,6 +1,5 @@
 import { getSession } from '@/app/supabase-server'
 import AuthUI from './AuthUI'
-
 import { redirect } from 'next/navigation'
 
 export default async function SignIn() {

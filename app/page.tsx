@@ -1,5 +1,5 @@
 import { getSession, getSubscription, getActiveProductsWithPrices } from '@/app/supabase-server'
-
+import { MobileNavbar } from '@/app/_landing/MobileNavbar'
 
 export default async function PricingPage() {
 	const [session, products, subscription] = await Promise.all([
@@ -8,5 +8,5 @@ export default async function PricingPage() {
 		getSubscription()
 	])
 
-	return <div>This is my new SaaS-Starter</div>
+	return <MobileNavbar />
 }
