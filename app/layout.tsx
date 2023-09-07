@@ -1,9 +1,13 @@
 import '@mantine/core/styles.css'
+import '../styles/global.css'
 import { PropsWithChildren } from 'react'
 import { MantineProvider, ColorSchemeScript } from '@mantine/core'
-import SupabaseProvider from './supabase-provider'
+import SupabaseProvider from '../utils/supabase-provider'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { getSession } from '@/utils/supabase-server'
+import { LandLayout } from '@/components/landing/LandLayout'
+import { AppLayout } from '../components/application/AppLayout'
 
 const meta = {
 	title: 'SGDev | SaaS Starter App',
@@ -42,11 +46,13 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic'
 
-export default function RootLayout({
+export default async function RootLayout({
 	// Layouts must accept a children prop.
 	// This will be populated with nested layouts or pages
 	children
 }: PropsWithChildren) {
+	const session = await getSession()
+
 	return (
 		<html lang='en'>
 			<head>
@@ -56,7 +62,7 @@ export default function RootLayout({
 				<MantineProvider>
 					<SupabaseProvider>
 						<ToastContainer theme='colored' position='top-center' />
-						{children}
+						{!session ? <LandLayout>{children}</LandLayout> : <AppLayout>{children}</AppLayout>}
 					</SupabaseProvider>
 				</MantineProvider>
 			</body>

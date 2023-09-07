@@ -1,19 +1,13 @@
-import { getSession } from '@/app/supabase-server'
-import AuthUI from './AuthUI'
+import { getSession } from '@/utils/supabase-server'
+import { SignIn } from '@/components/landing/screens/signin/SignIn'
 import { redirect } from 'next/navigation'
 
-export default async function SignIn() {
+export default async function SignInPage() {
 	const session = await getSession()
 
-	if (session) {
-		return redirect('/account')
-	}
+	// if (session) {
+	// 	return redirect('/account')
+	// }
 
-	return (
-		<div>
-			<div>
-				<AuthUI />
-			</div>
-		</div>
-	)
+	return <SignIn />
 }
