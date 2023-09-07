@@ -1,4 +1,4 @@
 a {
   text-decoration: none;
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-lightgray));
 }
