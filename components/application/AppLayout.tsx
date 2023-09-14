@@ -8,7 +8,7 @@ import { ColorSchemeToggle } from '@/components/shared/color-scheme-toggle/Color
 import { useSupabase } from '@/utils/supabase-provider'
 import { useRouter } from 'next/navigation'
 
-export const AppLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
+export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
 	const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true)
 	const router = useRouter()

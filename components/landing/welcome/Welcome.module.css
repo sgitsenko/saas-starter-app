@@ -1,5 +1,5 @@
 .title {
-  color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-gray-3));
+  color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-gray-1));
   font-size: rem(100px);
   font-weight: 900;
   letter-spacing: rem(-2px);
@@ -7,4 +7,13 @@
   @media (max-width: mantine-breakpoint-md) {
     font-size: rem(50px);
   }
+}
+
+.link {
+  color: light-dark(var(--mantine-color-blue-9), var(--mantine-color-blue-6));
+}
+
+.link:hover {
+  color: light-dark(var(--mantine-color-red-9), var(--mantine-color-red-6));
+  text-decoration: none;
 }

@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ColorSchemeToggle } from '@/components/shared/color-scheme-toggle/ColorSchemeToggle'
 
-export const LandLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
+export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [opened, { toggle }] = useDisclosure()
 	const router = useRouter()
 

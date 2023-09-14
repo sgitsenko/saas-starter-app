@@ -13,7 +13,7 @@ export function LandWelcome() {
 			<Text ta='center' size='lg' maw={580} mx='auto' mt='xl'>
 				Здесь будет лендинг для привлечения клиентов в умопомрачительную веб-прилу, которая
 				снесут вам башню! Следите за обновлениями на{' '}
-				<Anchor href='https://sgdev.me' size='lg'>
+				<Anchor className={classes.link} href='https://sgdev.me' size='lg'>
 					сайте разработчика
 				</Anchor>
 			</Text>

@@ -51,7 +51,7 @@ export const SignIn = () => {
 					access_type: 'offline',
 					prompt: 'consent'
 				},
-				redirectTo: `${getURL()}app`
+				redirectTo: `${getURL()}`
 			}
 		})
 
