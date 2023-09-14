@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation'
 export default async function SignInPage() {
 	const session = await getSession()
 
-	if (session) {
-		return redirect('/')
-	}
+	// if (session) {
+	// 	return redirect('/')
+	// }
 
 	return <SignIn />
 }
