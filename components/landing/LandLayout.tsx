@@ -7,6 +7,7 @@ import { MantineLogo } from '@mantine/ds'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ColorSchemeToggle } from '@/components/shared/color-scheme-toggle/ColorSchemeToggle'
+import { NewsletterModal } from '../shared/newsletter-modal/NewsletterModal'
 
 export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [opened, { toggle }] = useDisclosure()
@@ -22,7 +23,7 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 				<Group h='100%' px='md'>
 					<Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='sm' />
 					<Group justify='space-between' style={{ flex: 1 }}>
-						<MantineLogo size={30} />
+						<MantineLogo size={30} onClick={() => router.push('/')} />
 						<Group ml='xl' gap={30} visibleFrom='sm'>
 							<Link key='Pricing' href='/'>
 								Pricing
@@ -39,9 +40,10 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 						</Group>
 						<Group>
 							<ColorSchemeToggle />
-							<Button radius='md' onClick={() => router.push('/signin')}>
+							<NewsletterModal buttonText='Войти' />
+							{/* <Button radius='md' onClick={() => router.push('/signin')}>
 								Войти
-							</Button>
+							</Button> */}
 						</Group>
 					</Group>
 				</Group>

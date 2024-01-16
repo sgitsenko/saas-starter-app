@@ -1,9 +1,8 @@
 'use client'
 
 import { useForm } from '@mantine/form'
-import { TextInput, Paper, Button, Divider, Container, Title } from '@mantine/core'
+import { TextInput, Paper, Button, Divider, Container, Title, Loader } from '@mantine/core'
 import { useState } from 'react'
-import { Loader } from '@mantine/core'
 import { useSupabase } from '@/utils/supabase-provider'
 import { GoogleButton } from './GoogleButton'
 import { toast } from 'react-toastify'
@@ -66,7 +65,9 @@ export const SignIn = () => {
 
 	return (
 		<Container size={450}>
-			<Title mt={58}>Авторизация</Title>
+			<Title order={2} mt={58} style={{ textAlign: 'center'}}>
+				Авторизация
+			</Title>
 			<Paper withBorder shadow='md' p={20} mt={30} radius='md'>
 				{loading ? (
 					<Loader size='xl' />
@@ -75,7 +76,7 @@ export const SignIn = () => {
 						<TextInput
 							required
 							label='Введите эл.почту'
-							placeholder='user@email.com'
+							placeholder='name@email.com'
 							value={form.values.email}
 							onChange={event => form.setFieldValue('email', event.currentTarget.value)}
 							error={form.errors.email && 'Invalid email'}
