@@ -1,5 +1,5 @@
-import { AppWelcome } from '@/components/application/welcome/Welcome'
-import { LandWelcome } from '@/components/landing/welcome/Welcome'
+import { AppHome } from '@/components/application/screens/home/Home'
+import { LandHome } from '@/components/landing/screens/home/Home'
 import { getSession, getSubscription, getActiveProductsWithPrices } from '@/utils/supabase-server'
 
 export default async function HomePage() {
@@ -9,5 +9,5 @@ export default async function HomePage() {
 		getSubscription()
 	])
 
-	return !session ? <LandWelcome /> : <AppWelcome />
+	return !session ? <LandHome /> : <AppHome />
 }

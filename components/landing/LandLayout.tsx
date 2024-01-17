@@ -4,14 +4,22 @@ import { FC, PropsWithChildren } from 'react'
 import { useDisclosure } from '@mantine/hooks'
 import { AppShell, Burger, Group, Button, NavLink } from '@mantine/core'
 import { MantineLogo } from '@mantine/ds'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ColorSchemeToggle } from '@/components/shared/color-scheme-toggle/ColorSchemeToggle'
 import { NewsletterModal } from '../shared/newsletter-modal/NewsletterModal'
+import { analytics } from '@/utils/analitics'
+import { useEffect } from 'react'
+
 
 export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [opened, { toggle }] = useDisclosure()
 	const router = useRouter()
+	const pathname = usePathname()
+
+	useEffect(() => {
+		analytics.trackEvent('Visit page', {pathname})
+	}, [pathname])
 
 	return (
 		<AppShell

@@ -1,14 +1,21 @@
 'use client'
 
-import { Title, Text, Anchor, Box } from '@mantine/core'
-import classes from './Welcome.module.css'
+import { Title, Text, Anchor, Button, Box } from '@mantine/core'
+import classes from './Home.module.css'
 import { useRouter } from 'next/navigation'
 import { NewsletterModal } from '@/components/shared/newsletter-modal/NewsletterModal'
+import { analytics } from '@/utils/analitics'
 
-export function LandWelcome() {
+export function LandHome() {
 	const router = useRouter()
+	
+	const onClick = () => {
+		analytics.trackEvent('Button clicked')
+		router.push('/signin')
+	}
+
 	return (
-		<>
+		<Box className={classes.container}>
 			<Title className={classes.title} ta='center' mt={100}>
 				Welcome to{' '}
 				<Text inherit variant='gradient' component='span'>
@@ -21,9 +28,11 @@ export function LandWelcome() {
 				<Anchor className={classes.link} href='https://sgdev.me' size='lg'>
 					сайте разработчика
 				</Anchor>
-				{/* <Button radius='md' mt='xl' onClick={() => router.push('/signin')}>Начать бесплатно</Button> */}
 			</Text>
-			<NewsletterModal buttonText='Начать бесплатно' />
-		</>
+			<Button radius='md' mt='md' onClick={onClick}>
+				Начать бесплатно
+			</Button>
+			{/* <NewsletterModal buttonText='Начать бесплатно' /> */}
+		</Box>
 	)
 }
