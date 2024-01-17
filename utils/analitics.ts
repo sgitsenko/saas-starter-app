@@ -15,7 +15,9 @@ class AmplitudeAnalytics implements Analytics {
 
 	private initialize() {
 		if (!this.isInitialized) {
-			amplitude.init(this.apiKey)
+			amplitude.init(this.apiKey, {
+				defaultTracking: true
+			})
 			this.isInitialized = true
 		}
 	}
@@ -57,4 +59,3 @@ export const analytics =
 	process.env.NODE_ENV === 'production'
 		? new AmplitudeAnalytics(shouldBeDefined(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY))
 		: new LocalAnalytics()
-
