@@ -15,7 +15,7 @@ const meta = {
 	description: 'Boilerplate for SaaS',
 	cardImage: '/og.png',
 	robots: 'follow, index',
-	favicon: '/favicon.ico',
+	favicon: '/src/public/favicon.ico',
 	url: 'https://saas-sstarter-app.vercel.app',
 	type: 'website'
 }

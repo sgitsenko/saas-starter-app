@@ -18,9 +18,9 @@ export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const { supabase } = useSupabase()
 	
 	useEffect(() => {
-		getUser()
-			.then(user => analyticsClient.setUser(user.id))
-			.catch(error => console.log(error))
+		// getUser()
+		// 	.then(user => analyticsClient.setUser(user.id))
+		// 	.catch(error => console.log(error))
 		analyticsClient.track('App page viewed', { pathname })
 	}, [pathname])
 
