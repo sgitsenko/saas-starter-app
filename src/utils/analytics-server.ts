@@ -1,11 +1,6 @@
-import * as amplitude from '@amplitude/analytics-browser'
+import { init, identify, Identify, track } from '@amplitude/analytics-node'
 
-interface Analytics {
-	setUser: (id: string) => void
-	trackEvent: (name: string, data?: Record<string, any>) => void
-}
-
-class AmplitudeAnalytics implements Analytics {
+class AmplitudeAnalytics {
 	apiKey: string
 	isInitialized: boolean = false
 
@@ -15,34 +10,33 @@ class AmplitudeAnalytics implements Analytics {
 
 	private initialize() {
 		if (!this.isInitialized) {
-			amplitude.init(this.apiKey, {
-				defaultTracking: true
-			})
+			init(this.apiKey)
 			this.isInitialized = true
 		}
 	}
 
-	setUser(id: string) {
+	identify(id: string): void {
 		this.initialize()
-		amplitude.setUserId(id)
+		const identifyObj = new Identify()
+		identify(identifyObj, { user_id: id })
 	}
 
-	trackEvent(name: string, data?: Record<string, unknown>) {
+	track(eventName: string, eventProperties?: Record<string, any>, id?: string): void {
 		this.initialize()
-		amplitude.track(name, data)
+		track(eventName, eventProperties, { user_id: id })
 	}
 }
 
-class LocalAnalytics implements Analytics {
+class LocalAnalytics {
 	constructor() {
 		console.log('Initialize local analytics')
 	}
 
-	setUser(id: string) {
-		console.log('Set user for analytics: ', id)
+	identify(userId: string): void {
+		console.log('Set user for analytics: ', userId)
 	}
 
-	trackEvent(name: string, data?: Record<string, any>) {
+	track(name: string, data?: Record<string, any>) {
 		console.log('Track event: ', name, data)
 	}
 }
@@ -55,7 +49,7 @@ function shouldBeDefined<T>(value: T | undefined, valueName: string = 'value'): 
 	return value
 }
 
-export const analytics =
+export const analyticsServer =
 	process.env.NODE_ENV === 'production'
 		? new AmplitudeAnalytics(shouldBeDefined(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY))
 		: new LocalAnalytics()

@@ -1,18 +1,28 @@
 'use client'
 
-import { FC, PropsWithChildren } from 'react'
+import { FC, PropsWithChildren, useEffect } from 'react'
 import { useDisclosure } from '@mantine/hooks'
 import { AppShell, Burger, Button, Group, Skeleton } from '@mantine/core'
 import { MantineLogo } from '@mantine/ds'
-import { ColorSchemeToggle } from '@/components/shared/color-scheme-toggle/ColorSchemeToggle'
-import { useSupabase } from '@/utils/supabase-provider'
-import { useRouter } from 'next/navigation'
+import { ColorSchemeToggle } from '@/src/components/shared/color-scheme-toggle/color-scheme-toggle'
+import { useSupabase } from '@/src/utils/supabase-provider'
+import { useRouter, usePathname } from 'next/navigation'
+import { analyticsClient } from '@/src/utils/analytics-client'
+import { getUser } from '@/src/utils/supabase-client'
 
 export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
 	const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true)
 	const router = useRouter()
+	const pathname = usePathname()
 	const { supabase } = useSupabase()
+	
+	useEffect(() => {
+		getUser()
+			.then(user => analyticsClient.setUser(user.id))
+			.catch(error => console.log(error))
+		analyticsClient.track('App page viewed', { pathname })
+	}, [pathname])
 
 	return (
 		<AppShell

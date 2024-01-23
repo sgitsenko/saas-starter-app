@@ -1,5 +1,5 @@
 import { Title, Text, Anchor } from '@mantine/core'
-import classes from './Home.module.css'
+import classes from './home.module.css'
 
 export function AppHome() {
 	return (

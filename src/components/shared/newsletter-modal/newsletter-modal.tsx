@@ -3,7 +3,7 @@
 import { useDisclosure } from '@mantine/hooks'
 import { Modal, Button, Box, Text, TextInput } from '@mantine/core'
 import { FC, PropsWithChildren } from 'react'
-import { subscribeNewsletter } from '@/utils/subscribe-newsletter'
+import { subscribeNewsletter } from '@/src/utils/subscribe-newsletter'
 import { useForm } from '@mantine/form'
 import { useState } from 'react'
 import { toast } from 'react-toastify'

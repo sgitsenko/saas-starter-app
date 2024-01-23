@@ -3,10 +3,10 @@
 import { useForm } from '@mantine/form'
 import { TextInput, Paper, Button, Divider, Container, Title, Loader } from '@mantine/core'
 import { useState } from 'react'
-import { useSupabase } from '@/utils/supabase-provider'
-import { GoogleButton } from './GoogleButton'
+import { useSupabase } from '@/src/utils/supabase-provider'
+import { GoogleButton } from './google-button'
 import { toast } from 'react-toastify'
-import { getURL } from '@/utils/helpers'
+import { getURL } from '@/src/utils/helpers'
 
 export const SignIn = () => {
 	const [loading, setLoading] = useState(false)
@@ -22,7 +22,7 @@ export const SignIn = () => {
 		}
 	})
 
-	const onSubmit = async () => {
+	const signInWithEmail = async () => {
 		setLoading(true)
 
 		const { error: mgcErr } = await supabase.auth.signInWithOtp({
@@ -65,14 +65,14 @@ export const SignIn = () => {
 
 	return (
 		<Container size={450}>
-			<Title order={2} mt={58} style={{ textAlign: 'center'}}>
+			<Title order={2} mt={58} style={{ textAlign: 'center' }}>
 				Авторизация
 			</Title>
 			<Paper withBorder shadow='md' p={20} mt={30} radius='md'>
 				{loading ? (
 					<Loader size='xl' />
 				) : (
-					<form onSubmit={form.onSubmit(onSubmit)}>
+					<form onSubmit={form.onSubmit(signInWithEmail)}>
 						<TextInput
 							required
 							label='Введите эл.почту'

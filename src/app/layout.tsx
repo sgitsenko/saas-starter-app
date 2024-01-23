@@ -5,9 +5,10 @@ import { MantineProvider, ColorSchemeScript } from '@mantine/core'
 import SupabaseProvider from '../utils/supabase-provider'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { getSession } from '@/utils/supabase-server'
-import { LandLayout } from '@/components/landing/LandLayout'
-import { AppLayout } from '../components/application/AppLayout'
+import { getSession } from '@/src/utils/supabase-server'
+import { LandLayout } from '@/src/components/landing/land-layout'
+import { AppLayout } from '../components/application/app-layout'
+import { analyticsServer } from '../utils/analytics-server'
 
 const meta = {
 	title: 'SGDev | SaaS Starter App',

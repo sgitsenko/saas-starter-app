@@ -6,11 +6,10 @@ import { AppShell, Burger, Group, Button, NavLink } from '@mantine/core'
 import { MantineLogo } from '@mantine/ds'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { ColorSchemeToggle } from '@/components/shared/color-scheme-toggle/ColorSchemeToggle'
-import { NewsletterModal } from '../shared/newsletter-modal/NewsletterModal'
-import { analytics } from '@/utils/analitics'
+import { ColorSchemeToggle } from '@/src/components/shared/color-scheme-toggle/color-scheme-toggle'
+import { NewsletterModal } from '../shared/newsletter-modal/newsletter-modal'
+import { analyticsClient } from '@/src/utils/analytics-client'
 import { useEffect } from 'react'
-
 
 export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [opened, { toggle }] = useDisclosure()
@@ -18,7 +17,7 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 	const pathname = usePathname()
 
 	useEffect(() => {
-		analytics.trackEvent('Visit page', {pathname})
+		analyticsClient.track('Landing page viewed', { pathname })
 	}, [pathname])
 
 	return (

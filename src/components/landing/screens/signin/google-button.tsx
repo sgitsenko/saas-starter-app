@@ -1,6 +1,6 @@
 import { Button } from '@mantine/core'
 import React from 'react'
-import { GoogleIcon } from './GoogleIcon'
+import { GoogleIcon } from './google-icon'
 
 type Props = {
 	onClick: () => void
