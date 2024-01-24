@@ -6,7 +6,7 @@ import SupabaseProvider from '../utils/supabase-provider'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { getSession } from '@/src/utils/supabase-server'
-import { LandLayout } from '@/src/components/landing/land-layout'
+import { LandLayout } from '@/src/components/marketing/land-layout'
 import { AppLayout } from '../components/application/app-layout'
 import { amplitudeServer } from '../utils/amplitude-server'
 
@@ -27,7 +27,7 @@ export const metadata = {
 	robots: meta.robots,
 	favicon: meta.favicon,
 	url: meta.url,
-	type: meta.type,
+	type: meta.type
 	// openGraph: {
 	// 	url: meta.url,
 	// 	title: meta.title,

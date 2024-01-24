@@ -8,7 +8,6 @@ import { ColorSchemeToggle } from '@/src/components/shared/color-scheme-toggle/c
 import { useSupabase } from '@/src/utils/supabase-provider'
 import { useRouter, usePathname } from 'next/navigation'
 import { amplitudeClient } from '@/src/utils/amplitude-client'
-import { getUser } from '@/src/utils/supabase-client'
 
 export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
@@ -17,10 +16,9 @@ export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const pathname = usePathname()
 	const { supabase } = useSupabase()
 
-	// useEffect(() => {
-	// 	console.log('use-effect')
-	// 	amplitudeClient.track('App page viewed', { pathname })
-	// }, [])
+	useEffect(() => {
+		amplitudeClient.track('App page viewed', { pathname })
+	})
 
 	return (
 		<AppShell

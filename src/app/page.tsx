@@ -1,5 +1,5 @@
 import { AppHome } from '@/src/components/application/screens/home/home'
-import { LandHome } from '@/src/components/landing/screens/home/home'
+import { LandHome } from '@/src/components/marketing/screens/home/home'
 import {
 	getSession,
 	getSubscription,
