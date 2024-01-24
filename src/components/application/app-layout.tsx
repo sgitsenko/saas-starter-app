@@ -7,7 +7,7 @@ import { MantineLogo } from '@mantine/ds'
 import { ColorSchemeToggle } from '@/src/components/shared/color-scheme-toggle/color-scheme-toggle'
 import { useSupabase } from '@/src/utils/supabase-provider'
 import { useRouter, usePathname } from 'next/navigation'
-import { analyticsClient } from '@/src/utils/analytics-client'
+import { amplitudeClient } from '@/src/utils/amplitude-client'
 import { getUser } from '@/src/utils/supabase-client'
 
 export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
@@ -16,13 +16,11 @@ export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const router = useRouter()
 	const pathname = usePathname()
 	const { supabase } = useSupabase()
-	
-	useEffect(() => {
-		// getUser()
-		// 	.then(user => analyticsClient.setUser(user.id))
-		// 	.catch(error => console.log(error))
-		analyticsClient.track('App page viewed', { pathname })
-	}, [pathname])
+
+	// useEffect(() => {
+	// 	console.log('use-effect')
+	// 	amplitudeClient.track('App page viewed', { pathname })
+	// }, [])
 
 	return (
 		<AppShell

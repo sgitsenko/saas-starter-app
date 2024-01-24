@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { getSession } from '@/src/utils/supabase-server'
 import { LandLayout } from '@/src/components/landing/land-layout'
 import { AppLayout } from '../components/application/app-layout'
-import { analyticsServer } from '../utils/analytics-server'
+import { amplitudeServer } from '../utils/amplitude-server'
 
 const meta = {
 	title: 'SGDev | SaaS Starter App',
@@ -28,21 +28,21 @@ export const metadata = {
 	favicon: meta.favicon,
 	url: meta.url,
 	type: meta.type,
-	openGraph: {
-		url: meta.url,
-		title: meta.title,
-		description: meta.description,
-		cardImage: meta.cardImage,
-		type: meta.type,
-		site_name: meta.title
-	},
-	twitter: {
-		card: 'summary_large_image',
-		site: '@srgritsenko',
-		title: meta.title,
-		description: meta.description,
-		cardImage: meta.cardImage
-	}
+	// openGraph: {
+	// 	url: meta.url,
+	// 	title: meta.title,
+	// 	description: meta.description,
+	// 	cardImage: meta.cardImage,
+	// 	type: meta.type,
+	// 	site_name: meta.title
+	// },
+	// twitter: {
+	// 	card: 'summary_large_image',
+	// 	site: '@srgritsenko',
+	// 	title: meta.title,
+	// 	description: meta.description,
+	// 	cardImage: meta.cardImage
+	// }
 }
 
 export const dynamic = 'force-dynamic'

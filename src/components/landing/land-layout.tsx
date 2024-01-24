@@ -8,7 +8,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ColorSchemeToggle } from '@/src/components/shared/color-scheme-toggle/color-scheme-toggle'
 import { NewsletterModal } from '../shared/newsletter-modal/newsletter-modal'
-import { analyticsClient } from '@/src/utils/analytics-client'
+import { amplitudeClient } from '@/src/utils/amplitude-client'
 import { useEffect } from 'react'
 
 export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
@@ -17,7 +17,7 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 	const pathname = usePathname()
 
 	useEffect(() => {
-		analyticsClient.track('Landing page viewed', { pathname })
+		amplitudeClient.track('Land page viewed', { pathname })
 	}, [pathname])
 
 	return (

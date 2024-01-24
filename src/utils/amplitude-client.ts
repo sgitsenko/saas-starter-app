@@ -22,9 +22,10 @@ class AmplitudeAnalytics implements Analytics {
 		}
 	}
 
-	setUser(id: string) {
+	setUser(userId: string) {
 		this.initialize()
-		amplitude.setUserId(id)
+		amplitude.setUserId(userId)
+		console.log('amplitude-client', userId)
 	}
 
 	track(name: string, data?: Record<string, unknown>) {
@@ -55,7 +56,7 @@ function shouldBeDefined<T>(value: T | undefined, valueName: string = 'value'): 
 	return value
 }
 
-export const analyticsClient =
+export const amplitudeClient =
 	process.env.NODE_ENV === 'production'
 		? new AmplitudeAnalytics(shouldBeDefined(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY))
 		: new LocalAnalytics()
