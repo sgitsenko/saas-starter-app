@@ -56,7 +56,7 @@ function shouldBeDefined<T>(value: T | undefined, valueName: string = 'value'): 
 	return value
 }
 
-export const amplitudeClient =
+export const ampliClient =
 	process.env.NODE_ENV === 'production'
 		? new AmplitudeAnalytics(shouldBeDefined(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY))
 		: new LocalAnalytics()

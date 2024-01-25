@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { getSession } from '@/src/utils/supabase-server'
 import { LandLayout } from '@/src/components/marketing/land-layout'
 import { AppLayout } from '../components/application/app-layout'
-import { amplitudeServer } from '../utils/amplitude-server'
 
 const meta = {
 	title: 'SGDev | SaaS Starter App',

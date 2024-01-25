@@ -13,5 +13,5 @@ export default async function HomePage() {
 		getSubscription()
 	])
 
-	return !session ? <LandHome /> : <AppHome />
+	return !session ? <LandHome /> : <AppHome user={session?.user} />
 }

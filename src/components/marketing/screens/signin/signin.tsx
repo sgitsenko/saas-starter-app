@@ -7,6 +7,7 @@ import { useSupabase } from '@/src/utils/supabase-provider'
 import { GoogleButton } from './google-button'
 import { toast } from 'react-toastify'
 import { getURL } from '@/src/utils/helpers'
+import { ampliClient } from '@/src/utils/amplitude-client'
 
 export const SignIn = () => {
 	const [loading, setLoading] = useState(false)
@@ -24,6 +25,7 @@ export const SignIn = () => {
 
 	const signInWithEmail = async () => {
 		setLoading(true)
+		ampliClient.track('Signing in started', { provider: 'email' })
 
 		const { error: mgcErr } = await supabase.auth.signInWithOtp({
 			email: form.values.email,
@@ -43,6 +45,9 @@ export const SignIn = () => {
 	}
 
 	const signInWithGoogle = async () => {
+		setLoading(true)
+		ampliClient.track('Signing in started', { provider: 'google' })
+
 		const { error: goglErr } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {

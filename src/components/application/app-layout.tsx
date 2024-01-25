@@ -7,7 +7,7 @@ import { MantineLogo } from '@mantine/ds'
 import { ColorSchemeToggle } from '@/src/components/shared/color-scheme-toggle/color-scheme-toggle'
 import { useSupabase } from '@/src/utils/supabase-provider'
 import { useRouter, usePathname } from 'next/navigation'
-import { amplitudeClient } from '@/src/utils/amplitude-client'
+import { ampliClient } from '@/src/utils/amplitude-client'
 
 export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
@@ -16,9 +16,9 @@ export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 	const pathname = usePathname()
 	const { supabase } = useSupabase()
 
-	useEffect(() => {
-		amplitudeClient.track('App page viewed', { pathname })
-	}, [pathname])
+	// useEffect(() => {
+	// 	amplitudeClient.track('App page viewed', { pathname })
+	// }, [pathname])
 
 	return (
 		<AppShell
@@ -42,6 +42,8 @@ export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 								radius='md'
 								onClick={async () => {
 									await supabase.auth.signOut()
+									ampliClient.track('Signed out')
+									localStorage.setItem('isSignedIn', 'false')
 									router.push('/')
 									router.refresh()
 								}}

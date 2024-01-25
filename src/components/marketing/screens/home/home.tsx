@@ -4,13 +4,13 @@ import { Title, Text, Anchor, Button, Box } from '@mantine/core'
 import classes from './home.module.css'
 import { useRouter } from 'next/navigation'
 import { NewsletterModal } from '@/src/components/shared/newsletter-modal/newsletter-modal'
-import { amplitudeClient } from '@/src/utils/amplitude-client'
+import { ampliClient } from '@/src/utils/amplitude-client'
 
 export function LandHome() {
 	const router = useRouter()
 
 	const onClick = () => {
-		amplitudeClient.track('Button clicked')
+		ampliClient.track('Button clicked')
 		router.push('/signin')
 	}
 

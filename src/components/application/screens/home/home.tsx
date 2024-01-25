@@ -3,26 +3,26 @@
 import { Title, Text, Anchor } from '@mantine/core'
 import classes from './home.module.css'
 import { useEffect } from 'react'
-import { getUser } from '@/src/utils/supabase-client'
-import { amplitudeClient } from '@/src/utils/amplitude-client'
+import { ampliClient } from '@/src/utils/amplitude-client'
+import { User } from '@supabase/supabase-js'
 
-export function AppHome() {
+export function AppHome({ user }: { user: User }) {
 	useEffect(() => {
-		const ampliUserSeted = localStorage.getItem('ampliUserSeted')
+		const isSignedIn = localStorage.getItem('isSignedIn')
+		const currentUser = localStorage.getItem('currentUser')
 
-		if (!ampliUserSeted) {
-			getUser()
-				.then(user => {
-					amplitudeClient.setUser(user.id)
-					console.log('useEffect', user?.id)
-				})
-				.catch(error => console.log(error))
-
-			localStorage.setItem('ampliUserSeted', 'true')
+		if (currentUser !== user.id) {
+			ampliClient.setUser(user.id)
+			ampliClient.track('Signed in')
+			localStorage.setItem('currentUser', user.id)
+			localStorage.setItem('isSignedIn', 'true')
 		}
 
-		return 
-	})
+		if (isSignedIn === 'false') {
+			ampliClient.track('Signed in')
+			localStorage.setItem('isSignedIn', 'true')
+		}
+	}, [user.id])
 
 	return (
 		<>
