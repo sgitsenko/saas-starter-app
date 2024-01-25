@@ -18,7 +18,7 @@ export const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 
 	useEffect(() => {
 		amplitudeClient.track('App page viewed', { pathname })
-	})
+	}, [pathname])
 
 	return (
 		<AppShell

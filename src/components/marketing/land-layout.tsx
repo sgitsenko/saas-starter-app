@@ -18,7 +18,7 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 
 	useEffect(() => {
 		amplitudeClient.track('Land page viewed', { pathname })
-	})
+	}, [pathname])
 
 	return (
 		<AppShell
