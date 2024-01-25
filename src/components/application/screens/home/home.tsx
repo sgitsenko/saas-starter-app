@@ -16,7 +16,7 @@ export function AppHome({ user }: { user: User }) {
 			ampliClient.track('Signed in')
 			localStorage.setItem('currentUser', user.id)
 			localStorage.setItem('isSignedIn', 'true')
-			isSignedIn === 'true'
+			isSignedIn = 'true'
 		}
 
 		if (isSignedIn === 'false') {
