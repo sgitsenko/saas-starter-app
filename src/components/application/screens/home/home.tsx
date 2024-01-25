@@ -8,7 +8,7 @@ import { User } from '@supabase/supabase-js'
 
 export function AppHome({ user }: { user: User }) {
 	useEffect(() => {
-		const isSignedIn = localStorage.getItem('isSignedIn')
+		let isSignedIn = localStorage.getItem('isSignedIn')
 		const currentUser = localStorage.getItem('currentUser')
 
 		if (currentUser !== user.id) {
@@ -16,6 +16,7 @@ export function AppHome({ user }: { user: User }) {
 			ampliClient.track('Signed in')
 			localStorage.setItem('currentUser', user.id)
 			localStorage.setItem('isSignedIn', 'true')
+			isSignedIn === 'true'
 		}
 
 		if (isSignedIn === 'false') {

@@ -25,7 +25,7 @@ export const SignIn = () => {
 
 	const signInWithEmail = async () => {
 		setLoading(true)
-		ampliClient.track('Signing in started', { provider: 'email' })
+		ampliClient.track('Signin started', { provider: 'email' })
 
 		const { error: mgcErr } = await supabase.auth.signInWithOtp({
 			email: form.values.email,
@@ -45,8 +45,7 @@ export const SignIn = () => {
 	}
 
 	const signInWithGoogle = async () => {
-		setLoading(true)
-		ampliClient.track('Signing in started', { provider: 'google' })
+		ampliClient.track('Signin started', { provider: 'google' })
 
 		const { error: goglErr } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
