@@ -102,9 +102,7 @@ export interface ProductWithPrice extends Product {
 
 export interface UserDetails {
 	id: string /* primary key */
-	email: string
-	first_name?: string
-	last_name?: string
+	is_new: boolean
 	full_name?: string
 	avatar_url?: string
 	billing_address?: Json
