@@ -16,19 +16,7 @@ export function AppHome({ user }: { user: User }) {
 
 		if (currentUser !== user.id) {
 			ampliClient.setUser(user.id)
-
 			checkIsNewUser()
-				.then(confirm => {
-					if (confirm) {
-						ampliClient.track('Sign up completed')
-						changeIsNewUserStatus()
-						// здесь запустить онбординг
-					} else {
-						ampliClient.track('Sign in completed')
-					}
-				})
-				.catch(error => console.log('Is new user check error 3:', error))
-
 			localStorage.setItem('currentUser', user.id)
 			localStorage.setItem('isSignedIn', 'true')
 			isSignedIn = 'true'
@@ -41,28 +29,29 @@ export function AppHome({ user }: { user: User }) {
 		}
 	}, [user.id])
 
-	const checkIsNewUser = async (): Promise<boolean> => {
+	const checkIsNewUser = async () => {
 		try {
-			const { data, error } = await supabase.from('users').select('is_new')
-
-			if (error) {
-				console.log('Is new user check error 1:', error)
-				return false
+			const { data, error: isNewErr } = await supabase.from('users').select('is_new')
+			if (isNewErr) {
+				throw isNewErr
 			}
-			console.log('Is_new user status: ', data[0].is_new)
-			return data[0].is_new !== undefined
+			console.log('Is new user: ', data[0].is_new)
+
+			if (data[0].is_new) {
+				ampliClient.track('Sign up completed')
+				const { error } = await supabase.from('users').update({ is_new: false }).eq('id', user.id)
+				if (error) {
+					console.log('Changing is new user failed:', error.message)
+				}
+				console.log('Is new user: false')
+			} else {
+				ampliClient.track('Sign in completed')
+			}
+
 		} catch (error) {
 			console.log('Is new user check error 2:', error)
 			throw error
 		}
-	}
-
-	const changeIsNewUserStatus = async () => {
-		const { error } = await supabase.from('users').update({ is_new: false }).eq('id', user.id)
-		if (error) {
-			console.log('Changing is_new user status failed:', error.message)
-		}
-		console.log('Is_new user status changed')
 	}
 
 	return (

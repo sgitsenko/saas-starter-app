@@ -47,10 +47,10 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 						</Group>
 						<Group>
 							<ColorSchemeToggle />
-							<NewsletterModal buttonText='Войти' />
-							{/* <Button radius='md' onClick={() => router.push('/signin')}>
+							{/* <NewsletterModal buttonText='Войти' /> */}
+							<Button radius='md' onClick={() => router.push('/signin')}>
 								Войти
-							</Button> */}
+							</Button>
 						</Group>
 					</Group>
 				</Group>
