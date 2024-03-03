@@ -1,7 +1,6 @@
-import { NextPage } from 'next'
+import { checkSession } from '@/src/utils/supabase-server'
 
-const DashboardPage: NextPage = () => {
-  return <div>Dashboard</div>
+export default async function DashboardPage() {
+	await checkSession()
+	return <div>Dashboard</div>
 }
-
-export default DashboardPage

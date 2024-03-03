@@ -16,7 +16,7 @@ export function AppHome({ user }: { user: User }) {
 
 		if (currentUser !== user.id) {
 			ampliClient.setUser(user.id)
-			checkIsNewUser()
+			newUserHandler()
 			localStorage.setItem('currentUser', user.id)
 			localStorage.setItem('isSignedIn', 'true')
 			isSignedIn = 'true'
@@ -29,7 +29,7 @@ export function AppHome({ user }: { user: User }) {
 		}
 	}, [user.id])
 
-	const checkIsNewUser = async () => {
+	const newUserHandler = async () => {
 		try {
 			const { data, error: isNewErr } = await supabase.from('users').select('is_new')
 			if (isNewErr) {
