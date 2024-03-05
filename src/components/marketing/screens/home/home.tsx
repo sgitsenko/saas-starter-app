@@ -1,6 +1,20 @@
 'use client'
 
-import { Title, Text, Anchor, Button, Box } from '@mantine/core'
+import {
+	Title,
+	Text,
+	Anchor,
+	Button,
+	Box,
+	Image,
+	Container,
+	Group,
+	List,
+	ThemeIcon,
+	rem
+} from '@mantine/core'
+import { IconCheck } from '@tabler/icons-react'
+import image from '../../../../public/image.svg'
 import classes from './home.module.css'
 import { useRouter } from 'next/navigation'
 import { NewsletterModal } from '@/src/components/shared/newsletter-modal/newsletter-modal'
@@ -9,30 +23,29 @@ import { ampliClient } from '@/src/utils/amplitude-client'
 export function LandHome() {
 	const router = useRouter()
 
-	const onClick = () => {
-		ampliClient.track('Button clicked')
-		router.push('/signin')
-	}
-
 	return (
-		<Box className={classes.container}>
-			<Title className={classes.title} ta='center' mt={100}>
-				Welcome to{' '}
-				<Text inherit variant='gradient' component='span'>
-					SGDev
-				</Text>
+		<Container className={classes.container} >
+			<Title className={classes.title} ta='center'>
+				Создавайте привлекательные резюме
+				<br />
+				без творческих мук
 			</Title>
-			<Text ta='center' size='lg' maw={580} mx='auto' mt='xs' mb='xs'>
-				Здесь будет лендинг для привлечения клиентов в умопомрачительную веб-прилу, которая снесут
-				вам башню! Следите за обновлениями на{' '}
-				<Anchor className={classes.link} href='https://sgdev.me' size='lg'>
-					сайте разработчика
-				</Anchor>
+			<Text className={classes.description}>
+				Онлайн-сервис резюме с искусственным интеллектом
 			</Text>
-			<Button radius='md' mt='md' onClick={onClick}>
+			{/* <Button
+				radius='md'
+				onClick={() => {
+					ampliClient.track('Sign up/in clicked', { source: 'hero' })
+					router.push('/signin')
+				}}
+			>
 				Начать бесплатно
-			</Button>
-			{/* <NewsletterModal buttonText='Начать бесплатно' /> */}
-		</Box>
+			</Button> */}
+			<NewsletterModal
+				buttonText='НАЧАТЬ БЕСПЛАТНО'
+				onClick={() => ampliClient.track('Sign up/in clicked', { source: 'hero' })}
+			/>
+		</Container>
 	)
 }

@@ -2,7 +2,7 @@
 
 import { FC, PropsWithChildren } from 'react'
 import { useDisclosure } from '@mantine/hooks'
-import { AppShell, Burger, Group, Button, NavLink } from '@mantine/core'
+import { AppShell, Burger, Group, Button, NavLink, Title, Text } from '@mantine/core'
 import { MantineLogo } from '@mantine/ds'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -30,8 +30,16 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 				<Group h='100%' px='md'>
 					<Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='sm' />
 					<Group justify='space-between' style={{ flex: 1 }}>
-						<MantineLogo size={30} onClick={() => router.push('/')} />
-						<Group ml='xl' gap={30} visibleFrom='sm'>
+						<Title order={3}>
+							<Link href='/'>
+								<Text inherit variant='gradient' component='span' size='xl'>
+									ResumAI
+								</Text>
+							</Link>
+						</Title>
+
+						{/* <MantineLogo size={30} onClick={() => router.push('/')} /> */}
+						{/* <Group ml='xl' gap={30} visibleFrom='sm'>
 							<Link key='Pricing' href='/'>
 								Pricing
 							</Link>
@@ -44,24 +52,27 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 							<Link key='Support' href='/'>
 								Support
 							</Link>
-						</Group>
+						</Group> */}
 						<Group>
 							<ColorSchemeToggle />
-							{/* <NewsletterModal buttonText='Войти' /> */}
-							<Button radius='md' onClick={() => router.push('/signin')}>
+							<NewsletterModal
+								buttonText='Войти'
+								onClick={() => ampliClient.track('Sign up/in clicked', { source: 'header' })}
+							/>
+							{/* <Button radius='md' onClick={() => router.push('/signin')}>
 								Войти
-							</Button>
+							</Button> */}
 						</Group>
 					</Group>
 				</Group>
 			</AppShell.Header>
 
-			<AppShell.Navbar py='md' px={4}>
+			{/* <AppShell.Navbar py='md' px={4}>
 				<NavLink key='Pricing' label='Pricing' variant='subtle' />
 				<NavLink key='Blog' label='Blog' variant='subtle' />
 				<NavLink key='Contacts' label='Contacts' variant='subtle' />
 				<NavLink key='Support' label='Support' variant='subtle' />
-			</AppShell.Navbar>
+			</AppShell.Navbar> */}
 
 			<AppShell.Main>{children}</AppShell.Main>
 		</AppShell>

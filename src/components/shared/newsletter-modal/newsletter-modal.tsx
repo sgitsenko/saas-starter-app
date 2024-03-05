@@ -7,12 +7,17 @@ import { subscribeNewsletter } from '@/src/utils/subscribe-newsletter'
 import { useForm } from '@mantine/form'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { ampliClient } from '@/src/utils/amplitude-client'
 
 interface MailingModalProps {
 	buttonText: string
+	onClick: () => void
 }
 
-export const NewsletterModal: FC<PropsWithChildren<MailingModalProps>> = ({ buttonText }) => {
+export const NewsletterModal: FC<PropsWithChildren<MailingModalProps>> = ({
+	buttonText,
+	onClick
+}) => {
 	const [opened, { open, close }] = useDisclosure(false)
 	const [loading, setLoading] = useState(false)
 
@@ -27,14 +32,18 @@ export const NewsletterModal: FC<PropsWithChildren<MailingModalProps>> = ({ butt
 
 	const onSubmit = async () => {
 		setLoading(true)
+		ampliClient.track('Email subscription started')
+
 		const res = await subscribeNewsletter(form.values.email)
 
 		if (res !== 'Вы успешно подписаны!') {
 			setLoading(false)
 			toast.error(res)
+			ampliClient.track('Error Encountered', { source: 'email subscription' })
 			return
 		}
 
+		ampliClient.track('Email subscription completed')
 		setLoading(false)
 		toast.success(res)
 	}
@@ -43,14 +52,14 @@ export const NewsletterModal: FC<PropsWithChildren<MailingModalProps>> = ({ butt
 		<Box style={{ textAlign: 'center' }}>
 			<Modal opened={opened} onClose={close} title='Благодарим за проявленный интерес 🤗' centered>
 				<Text size='sm' mb='sm'>
-					В настоящее время сервис активно разрабатывается ⚒️
+					В настоящее время сервис в стадии разработки ⚒️
 					<br />
-					Подпишитесь, чтобы узнать о его запуске в числе первых
+					Подпишитесь, чтобы узнать о запуске в числе первых
 					<br />
 				</Text>
 				<form onSubmit={form.onSubmit(onSubmit)}>
 					<TextInput
-						placeholder='name@email.com'
+						placeholder='name@email.ru'
 						value={form.values.email}
 						onChange={event => form.setFieldValue('email', event.currentTarget.value)}
 						error={form.errors.email && 'Invalid email'}
@@ -61,7 +70,15 @@ export const NewsletterModal: FC<PropsWithChildren<MailingModalProps>> = ({ butt
 					</Button>
 				</form>
 			</Modal>
-			<Button onClick={open}>{buttonText}</Button>
+			<Button
+				radius='xl'
+				onClick={() => {
+					onClick()
+					open()
+				}}
+			>
+				{buttonText}
+			</Button>
 		</Box>
 	)
 }

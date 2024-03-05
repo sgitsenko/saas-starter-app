@@ -1,11 +1,23 @@
 .title {
   color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-gray-1));
-  font-size: rem(100px);
-  font-weight: 900;
-  letter-spacing: rem(-2px);
+  font-size: min(6vw, rem(35px));
+  font-weight: 800;
+  margin-bottom: var(--mantine-spacing-md);
 
   @media (max-width: mantine-breakpoint-md) {
-    font-size: rem(50px);
+    font-size: rem(35px);
+  }
+}
+
+.description {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
+  text-align: center;
+  font-size: min(6vw, rem(20px));
+  margin-bottom: var(--mantine-spacing-xl);
+
+  @media (max-width: mantine-breakpoint-xs) {
+    font-size: var(--mantine-font-size-md);
+    text-align: left;
   }
 }
 
@@ -23,5 +35,5 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 83vh;
 }
