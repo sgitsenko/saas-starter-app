@@ -10,19 +10,17 @@ import { LandLayout } from '@/src/components/marketing/land-layout'
 import { AppLayout } from '../components/application/app-layout'
 
 const meta = {
-	title: 'SGDev | SaaS Starter App',
-	description: 'Boilerplate for SaaS',
-	cardImage: '/og.png',
+	title: 'ResumAI | SGDev',
+	description: 'AI-powered Resume Builder',
 	robots: 'follow, index',
 	favicon: '/src/public/favicon.ico',
-	url: 'https://saas-sstarter-app.vercel.app',
+	url: 'https://resumai.sgdev.me',
 	type: 'website'
 }
 
 export const metadata = {
 	title: meta.title,
 	description: meta.description,
-	cardImage: meta.cardImage,
 	robots: meta.robots,
 	favicon: meta.favicon,
 	url: meta.url,
