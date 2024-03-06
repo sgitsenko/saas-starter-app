@@ -22,7 +22,7 @@ class AmplitudeAnalytics implements Analytics {
 				// 		resetSessionOnNewCampaign: true
 				// 	},
 				// 	pageViews: false,
-				// 	sessions: true,
+				// 	sessions: false,
 				// 	formInteractions: true,
 				// 	fileDownloads: false
 				// }
@@ -34,6 +34,7 @@ class AmplitudeAnalytics implements Analytics {
 	setUser(userId: string) {
 		this.initialize()
 		amplitude.setUserId(userId)
+		console.log('amplitude-client', userId)
 	}
 
 	track(name: string, data?: Record<string, unknown>) {
@@ -65,6 +66,6 @@ function shouldBeDefined<T>(value: T | undefined, valueName: string = 'value'): 
 }
 
 export const ampliClient =
-	process.env.NODE_ENV === 'production' && 'preview'
+	process.env.NODE_ENV === 'production'
 		? new AmplitudeAnalytics(shouldBeDefined(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY))
 		: new LocalAnalytics()

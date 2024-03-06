@@ -3,8 +3,7 @@
 import { FC, PropsWithChildren } from 'react'
 import { useDisclosure } from '@mantine/hooks'
 import { AppShell, Burger, Group, Button, NavLink, Title, Text } from '@mantine/core'
-import { MantineLogo } from '@mantine/ds'
-import { useRouter, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ColorSchemeToggle } from '@/src/components/shared/color-scheme-toggle/color-scheme-toggle'
 import { NewsletterModal } from '../shared/newsletter-modal/newsletter-modal'
@@ -13,11 +12,10 @@ import { useEffect } from 'react'
 
 export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [opened, { toggle }] = useDisclosure()
-	const router = useRouter()
 	const pathname = usePathname()
 
 	useEffect(() => {
-		ampliClient.track('Landing viewed', { pathname })
+		ampliClient.track('Land page viewed', { pathname })
 	}, [pathname])
 
 	return (
@@ -38,26 +36,11 @@ export const LandLayout: FC<PropsWithChildren> = ({ children }) => {
 							</Link>
 						</Title>
 
-						{/* <MantineLogo size={30} onClick={() => router.push('/')} /> */}
-						{/* <Group ml='xl' gap={30} visibleFrom='sm'>
-							<Link key='Pricing' href='/'>
-								Pricing
-							</Link>
-							<Link key='Blog' href='/'>
-								Blog
-							</Link>
-							<Link key='Contacts' href='/'>
-								Contacts
-							</Link>
-							<Link key='Support' href='/'>
-								Support
-							</Link>
-						</Group> */}
 						<Group>
 							<ColorSchemeToggle />
 							<NewsletterModal
 								buttonText='Войти'
-								onClick={() => ampliClient.track('Sign up/in clicked', { source: 'header' })}
+								onClick={() => ampliClient.track('Sign clicked', { source: 'header' })}
 							/>
 							{/* <Button radius='md' onClick={() => router.push('/signin')}>
 								Войти
