@@ -1,20 +1,6 @@
 'use client'
 
-import {
-	Title,
-	Text,
-	Anchor,
-	Button,
-	Box,
-	Image,
-	Container,
-	Group,
-	List,
-	ThemeIcon,
-	rem
-} from '@mantine/core'
-import { IconCheck } from '@tabler/icons-react'
-import image from '../../../../public/image.svg'
+import { Title, Text, Container } from '@mantine/core'
 import classes from './home.module.css'
 import { useRouter } from 'next/navigation'
 import { NewsletterModal } from '@/src/components/shared/newsletter-modal/newsletter-modal'
@@ -24,15 +10,13 @@ export function LandHome() {
 	const router = useRouter()
 
 	return (
-		<Container className={classes.container} >
+		<Container className={classes.container}>
 			<Title className={classes.title} ta='center'>
 				Создавайте привлекательные резюме
 				<br />
 				без творческих мук
 			</Title>
-			<Text className={classes.description}>
-				Онлайн-сервис резюме с искусственным интеллектом
-			</Text>
+			<Text className={classes.description}>Онлайн-сервис резюме с искусственным интеллектом</Text>
 			{/* <Button
 				radius='md'
 				onClick={() => {
@@ -44,7 +28,7 @@ export function LandHome() {
 			</Button> */}
 			<NewsletterModal
 				buttonText='НАЧАТЬ БЕСПЛАТНО'
-				onClick={() => ampliClient.track('Sign up/in clicked', { source: 'hero' })}
+				onClick={() => ampliClient.track('Sign clicked', { source: 'hero' })}
 			/>
 		</Container>
 	)
