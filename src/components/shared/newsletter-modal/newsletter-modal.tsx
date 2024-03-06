@@ -39,22 +39,26 @@ export const NewsletterModal: FC<PropsWithChildren<MailingModalProps>> = ({
 		if (res !== 'Вы успешно подписаны!') {
 			setLoading(false)
 			toast.error(res)
-			ampliClient.track('Error Encountered', { source: 'email subscription' })
+			ampliClient.track('Error Encountered', {
+				source: 'email subscription',
+				message: res
+			})
 			return
 		}
 
-		ampliClient.track('Email subscription completed')
 		setLoading(false)
 		toast.success(res)
+		ampliClient.track('Email subscription completed')
+		close()
 	}
 
 	return (
 		<Box style={{ textAlign: 'center' }}>
 			<Modal opened={opened} onClose={close} title='Благодарим за проявленный интерес 🤗' centered>
 				<Text size='sm' mb='sm'>
-					В настоящее время сервис в стадии разработки ⚒️
+					Сервис в стадии разработки ⚒️
 					<br />
-					Подпишитесь, чтобы узнать о запуске в числе первых
+					Подпишитесь👇 чтобы узнать о запуске🚀
 					<br />
 				</Text>
 				<form onSubmit={form.onSubmit(onSubmit)}>

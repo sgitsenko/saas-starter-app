@@ -12,7 +12,7 @@
 .description {
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
   text-align: center;
-  font-size: min(6vw, rem(20px));
+  font-size: min(6vw, rem(18px));
   margin-bottom: var(--mantine-spacing-xl);
 
   @media (max-width: mantine-breakpoint-xs) {
