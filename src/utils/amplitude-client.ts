@@ -2,7 +2,7 @@ import * as amplitude from '@amplitude/analytics-browser'
 
 interface Analytics {
 	setUser: (id: string) => void
-	track: (name: string, data?: Record<string, any>) => void
+	track: (name: string, data?: Record<string, any>, groups?: Record<string, any>) => void
 }
 
 class AmplitudeAnalytics implements Analytics {
@@ -34,12 +34,11 @@ class AmplitudeAnalytics implements Analytics {
 	setUser(userId: string) {
 		this.initialize()
 		amplitude.setUserId(userId)
-		console.log('amplitude-client', userId)
 	}
 
-	track(name: string, data?: Record<string, unknown>) {
+	track(name: string, data?: Record<string, unknown>, groups?: Record<string, any>) {
 		this.initialize()
-		amplitude.track(name, data)
+		amplitude.track(name, data, groups)
 	}
 }
 
