@@ -16,18 +16,19 @@ class AmplitudeAnalytics implements Analytics {
 	private initialize() {
 		if (!this.isInitialized) {
 			amplitude.init(this.apiKey, {
-				defaultTracking: {
-					attribution: {
-						resetSessionOnNewCampaign: true
-					},
-					pageViews: false,
-					sessions: true,
-					formInteractions: true,
-					fileDownloads: false
-				}
-			})
-			this.isInitialized = true
-		}
+				defaultTracking: true
+		// 		defaultTracking: {
+		// 			attribution: {
+		// 				resetSessionOnNewCampaign: true
+		// 			},
+		// 			pageViews: false,
+		// 			sessions: true,
+		// 			formInteractions: true,
+		// 			fileDownloads: false
+		// 		}
+		// 	})
+		// 	this.isInitialized = true
+		// }
 	}
 
 	setUser(userId: string) {
