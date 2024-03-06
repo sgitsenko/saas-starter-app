@@ -21,7 +21,7 @@ class AmplitudeAnalytics implements Analytics {
 						resetSessionOnNewCampaign: true
 					},
 					pageViews: false,
-					sessions: false,
+					sessions: true,
 					formInteractions: true,
 					fileDownloads: false
 				}
