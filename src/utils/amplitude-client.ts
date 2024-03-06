@@ -16,7 +16,7 @@ class AmplitudeAnalytics implements Analytics {
 	private initialize() {
 		if (!this.isInitialized) {
 			amplitude.init(this.apiKey, {
-				defaultTracking: false
+				defaultTracking: true
 				// defaultTracking: {
 				// 	attribution: {
 				// 		resetSessionOnNewCampaign: true
